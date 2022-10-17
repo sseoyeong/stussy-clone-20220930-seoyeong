@@ -23,7 +23,7 @@ registerButton.onclick = () => {
         success: (response, textStatus, request) => {   //성공시에 실행될 메소드
             console.log(response);
             const successURI = request.getResponseHeaders("Location");
-            location.replace(successURI + "?email=" response.data);
+            location.replace(successURI + "?email=", response.data);
         },
         error: (error) => {             //실패시에 실행될 메소드
             console.log(error.responseJSON);
