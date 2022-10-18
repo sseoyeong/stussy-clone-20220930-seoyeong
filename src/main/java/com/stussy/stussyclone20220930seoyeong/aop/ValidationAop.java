@@ -19,9 +19,7 @@ import java.util.Map;
 public class ValidationAop {
 
     @Pointcut("execution(* com.stussy.stussyclone20220930seoyeong..*Api.*(..))")
-    private void executionPointCut() {
-
-    }
+    private void executionPointCut() {}
 
     @Around("executionPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -31,8 +29,10 @@ public class ValidationAop {
         BeanPropertyBindingResult bindingResult = null;
 
         for(Object arg : args) {
-            if(arg .getClass() == BeanPropertyBindingResult.class){
+            System.out.println(arg);
+            if(arg.getClass() == BeanPropertyBindingResult.class){
                bindingResult = (BeanPropertyBindingResult) arg;
+               break;
             }
         }
 
