@@ -18,7 +18,7 @@ public class LogAop {
     @Pointcut("execution(* com.stussy.stussyclone20220930seoyeong.api.*Api.*(..))")
     private void pointCut() {}
 
-    @Pointcut("@Annotation(com.stussy.stussyclone20220930seoyeong.aop.annotation.LogAspect)")
+    @Pointcut("@annotation(com.stussy.stussyclone20220930seoyeong.aop.annotation.LogAspect)")
     private void annotationPointCut() {}
 
     @Around("annotationPointCut()")
