@@ -68,13 +68,13 @@
                     </aside>
                     <section class="admin-main">
                         <div class="regist-header">
-                            <select class="product-inputs">
+                            <select class="product-inputs product-category">
                                 <option value="none">상품 종류</option>
-                                <option value="TEES">TEES</option>
-                                <option value="DENIM">DENIM</option>
+                                <option value="1">TEES</option>
+                                <option value="2">DENIM</option>
                             </select>
                             <input type="text" class="product-inputs" placeholder="상품명">
-                            <input type="text" class="product-inputs" placeholder="가격">
+                            <input type="number" min="100" step="100" class="product-inputs" placeholder="가격">
                         </div>
                         <div class="regist-info regist-info-invisible">
                             <textarea class="product-inputs" placeholder="간단 설명"></textarea>
@@ -84,6 +84,51 @@
                             <textarea class="product-inputs" placeholder="배송 설명"></textarea>
                         </div>
                         <button type="button" class="btn regist-button">등록하기</button>
+                        <div class="product-mst">
+                            <div class="list-container">
+                                <table class="product-mst-list">
+                                    <thead>
+                                        <tr>
+                                            <th>상품코드</th>
+                                            <th>상품종류</th>
+                                            <th>상품명</th>
+                                            <th>가격</th>
+                                            <th>상세</th>
+                                            <th>추가</th>
+                                            <th>수정</th>
+                                            <th>삭제</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>TEES</td>
+                                            <td>테스트 상품1</td>
+                                            <td>100000</td>
+                                            <td><button type="button" class="btn">보기</button></td>
+                                            <td><button type="button" class="btn">추가</button></td>
+                                            <td><button type="button" class="btn">수정</button></td>
+                                            <td><button type="button" class="btn">삭제</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="show-option">
+                                <div class="function-container">
+
+                                </div>
+                                <label for="simple-info">간단 설명</label>
+                                <textarea id="simple-info"></textarea>
+                                <label for="detail-info">상세 설명</label>
+                                <textarea id="detail-info"></textarea>
+                                <label for="option-info">추가 설명</label>
+                                <textarea id="option-info"></textarea>
+                                <label for="management-info">관리 설명</label>
+                                <textarea id="management-info"></textarea>
+                                <label for="shipping-info">배송 설명</label>
+                                <textarea id="shipping-info"></textarea>
+                            </div>
+                        </div>
                     </section>   
                 </div>
             </div>

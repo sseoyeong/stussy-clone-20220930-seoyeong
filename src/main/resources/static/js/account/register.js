@@ -26,7 +26,7 @@ registerButton.onclick = () => {
             location.replace(successURI + "?email=", response.data);
         },
         error: (error) => {             //실패시에 실행될 메소드
-            console.log(error.responseJSON);
+            console.log(error.responseJSON.data);
             loadErrorMessage(error.responseJSON.data);
         }
     });
