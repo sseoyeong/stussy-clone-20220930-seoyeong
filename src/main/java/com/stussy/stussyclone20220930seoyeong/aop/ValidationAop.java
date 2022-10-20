@@ -48,6 +48,7 @@ public class ValidationAop {
 
             throw new CustomValidationException("Validation Error", errorMap);
         }
+
         Object result = null;
         result = joinPoint.proceed();
 

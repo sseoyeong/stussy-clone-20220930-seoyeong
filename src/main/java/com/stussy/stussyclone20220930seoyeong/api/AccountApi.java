@@ -24,16 +24,16 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class AccountApi {
-
     private final AccountService accountService;
 
     @LogAspect
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto, BindingResult bindingResult) throws Exception {
+    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto,
+                                      BindingResult bindingResult) throws Exception {
 
         accountService.duplicateEmail(registerReqDto);
         accountService.register(registerReqDto);
 
-        return ResponseEntity.created(URI.create("account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getEmail()));
+        return ResponseEntity.created(URI.create("/account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getEmail()));
     }
 }
