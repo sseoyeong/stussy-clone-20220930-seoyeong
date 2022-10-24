@@ -229,6 +229,17 @@ class RegisterService {
     }
 }
 
+class ListService {
+    static #instance = null;
+
+    getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new ListService();
+        }
+        return this.#instance;
+    }
+}
+
 window.onload = () => {
     RegisterService.getInstance().getCategoryList();
     RegisterService.getInstance().setRegisterHeaderEvent();
