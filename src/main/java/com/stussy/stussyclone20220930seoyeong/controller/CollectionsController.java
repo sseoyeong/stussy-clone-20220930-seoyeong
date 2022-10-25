@@ -10,6 +10,6 @@ public class CollectionsController {
 
     @GetMapping("/collections/{category}")
     public String loadCollections(@PathVariable String category) {
-        return "Product/collections_number";
+        return "Product/collections_scroll";
     }
 }

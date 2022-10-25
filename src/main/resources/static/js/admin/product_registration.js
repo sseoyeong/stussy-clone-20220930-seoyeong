@@ -184,7 +184,7 @@ class RegisterEventService {
 
             const registerApi = new RegisterApi();
             if(registerApi.createProductRequest(productMst.getObject())) {
-                alert("상춤 등록 완료");
+                alert("상품 등록 완료");
                 location.reload();
             }
         }

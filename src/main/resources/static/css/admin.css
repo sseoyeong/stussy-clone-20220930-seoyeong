@@ -76,7 +76,40 @@ textarea {
     width: 70%;
     height: 715%;
 
-    
+    overflow-y: auto;
+}
+
+.page-number-list {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.page-number-list li {
+    margin-right: 3px;
+
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 3px;
+
+    width: 20px;
+    height: 20px;
+
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+
+    width: 250px;
+}
+
+.search-input {
+    width: 200px;
+}
+
+.search-button {
+    color: white;
+    background-color: black;
 }
 
 .product-mst-list {
@@ -120,7 +153,8 @@ textarea {
 
 .function-container {
     height: 300px;
-    border: 1px solid rgb(198, 198, 198); 
+    border: 1px solid rgb(198, 198, 198);
+    height: 220px; 
 }
 
 .show-option label {

@@ -25,10 +25,10 @@ public class ProductServiceImpl implements ProductService {
         map.put("index", (page - 1) * 16);
 
         productRepository.getProductList(map).forEach(collectionsProduct -> {
-            ProductList.add(collectionsProduct.toDto());
+            productList.add(collectionsProduct.toDto());
         });
 
-        return null;
+        return productList;
     }
 
 }
