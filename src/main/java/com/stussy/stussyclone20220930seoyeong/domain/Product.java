@@ -20,4 +20,5 @@ public class Product {
     private String pdt_management_info;
     private String pdt_shipping_info;
 
+
 }
