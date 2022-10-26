@@ -3,6 +3,7 @@ package com.stussy.stussyclone20220930seoyeong.api.admin;
 import com.stussy.stussyclone20220930seoyeong.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220930seoyeong.aop.annotation.ValidAspect;
 import com.stussy.stussyclone20220930seoyeong.dto.CMRespDto;
+import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductRegisterDtlReqDto;
 import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductRegisterReqDto;
 import com.stussy.stussyclone20220930seoyeong.service.admin.ProductManagementService;
 import lombok.RequiredArgsConstructor;
@@ -34,23 +35,41 @@ public class ProductAdminApi {
 
             productRegisterReqDto.setCategory(i / 10 + 1);
             productRegisterReqDto.setName(name + (i + 1));
-            productRegisterReqDto.setPrice((random.nextInt(10)+ 1) + 100000);
+            productRegisterReqDto.setPrice((random.nextInt(10) + 1) * 100000);
             productManagementService.registerMst(productRegisterReqDto);
-        };
+
+        }
 
         return ResponseEntity.created(null)
                 .body(new CMRespDto<>("Register Successfully", true));
     }
 
-
     @GetMapping("/product/category")
     public ResponseEntity<?> getCategoryList() throws Exception {
-        return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully", productManagementService.getCategoryList()));
+
+        return ResponseEntity.ok()
+                .body(new CMRespDto<>("Get Successfully", productManagementService.getCategoryList()));
     }
 
-    @GetMapping("/option/products.mst")
-    public ResponseEntity<?> getProductLIst() throws Exception {
+    @GetMapping("/option/products/mst")
+    public ResponseEntity<?> getProductMstList() throws Exception {
         return ResponseEntity.ok()
-                .body(new CMRespDto<>("Get Successfully", null));
+                .body(new CMRespDto<>("Get Successfully", productManagementService.getProductMstList()));
     }
+
+    @GetMapping("/option/products/size/{productId}")
+    public ResponseEntity<?> getSizeList(@PathVariable int productId) throws Exception {
+        return ResponseEntity.ok()
+                .body(new CMRespDto<>("Get Successfully", productManagementService.getSizeList(productId)));
+    }
+
+    @PostMapping("/product/dtl")
+    public ResponseEntity<?> registerDtl(@RequestBody ProductRegisterDtlReqDto productRegisterDtlReqDto) throws Exception {
+
+        productManagementService.checkDuplicatedColor(productRegisterDtlReqDto);
+
+        return ResponseEntity.ok()
+                .body(new CMRespDto<>("Register Successfully", true));
+    }
+
 }
