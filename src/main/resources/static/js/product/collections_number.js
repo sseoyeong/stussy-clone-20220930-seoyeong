@@ -52,6 +52,7 @@ class PageNumber {
         this.createPreButton();
         this.createNumberButtons();
         this.createNextButton();
+        this.addPageButtonEvent();
     }
 
     createPreButton() {
@@ -89,7 +90,7 @@ class PageNumber {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
                     CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) - 1;
                     CollectionsService.getInstance().loadCollections();
-                    
+
                 }else if(button.textContent == ">") {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
                     CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) + 1;
@@ -97,13 +98,12 @@ class PageNumber {
 
                 }else {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
-                    if(button.textContent != nowPage) {
+                    if(button.textContent != nowPage){
                         CollectionsService.getInstance().collectionsEntity.page = button.textContent;
                         CollectionsService.getInstance().loadCollections();
                     }
                 }
             }
-            
         });
     }
 
@@ -126,15 +126,15 @@ class CollectionsService {
 
     loadCollections() {
         const responseData = CollectionsApi.getInstance().getCollections(this.collectionsEntity.page);
+        console.log(responseData);
         if(responseData.length > 0) {
             this.collectionsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.collectionsEntity.page, this.collectionsEntity.totalCount);
             this.getCollections(responseData);
         }else {
             alert("해당 카테고리에 등록된 상품 정보가 없습니다.");
-            location.href = "/collections/all"
+            location.href = "/collections/all";
         }
-
     }
 
     getCollections(responseData) {
@@ -144,17 +144,17 @@ class CollectionsService {
         responseData.forEach(product => {
             collectionProducts.innerHTML += `
             <li class="collection-product">
-                    <div class="product-img">
-                        <img src="/static/images/header/product1.png">
-                    </div>
-                    <div class="product-name">
-                        ${product.productName}
-                    </div>
-                    <div class="product-price">
-                        ${product.productPrice}원
-                    </div>
-                </li>
-                `;
+                <div class="product-img">
+                    <img src="/static/images/product/1924840_PUTT_1_720x.png">
+                </div>
+                <div class="product-name">
+                    ${product.productName}
+                </div>
+                <div class="product-price">
+                    ${product.productPrice}원
+                </div>
+            </li>
+            `;
         });
     }
 

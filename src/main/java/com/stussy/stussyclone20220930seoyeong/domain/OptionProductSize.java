@@ -18,5 +18,4 @@ public class OptionProductSize {
                 .sizeName(size_name)
                 .build();
     }
-
 }

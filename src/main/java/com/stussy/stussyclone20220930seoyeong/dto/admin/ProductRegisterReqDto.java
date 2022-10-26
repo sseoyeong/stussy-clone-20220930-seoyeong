@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class ProductRegisterReqDto {
     private int category;
     private String name;
-    @Min(value=100, message="최소 가격은 100원입니다.")
+    @Min(value = 100, message = "최소 가격은 100원입니다.")
     private int price;
     private String simpleInfo;
     private String detailInfo;

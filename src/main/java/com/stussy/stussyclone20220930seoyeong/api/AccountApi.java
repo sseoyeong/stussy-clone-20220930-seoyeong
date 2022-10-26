@@ -24,6 +24,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class AccountApi {
+
     private final AccountService accountService;
 
     @LogAspect
@@ -36,4 +37,5 @@ public class AccountApi {
 
         return ResponseEntity.created(URI.create("/account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getEmail()));
     }
+
 }

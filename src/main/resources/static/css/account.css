@@ -10,7 +10,7 @@ main {
 .account-container {
     display: flex;
     justify-content: center;
-
+    
     margin: 0px auto;
 }
 
@@ -46,7 +46,7 @@ section {
 
 .account-button {
     margin-bottom: 15px;
-    
+
     width: 100%;
 
     font-weight: 700;
@@ -55,8 +55,8 @@ section {
 }
 
 .errors {
-    color: #e74c3c;
     margin-bottom: 15px;
+    color: #e74c3c;
     text-align: center;
 }
 

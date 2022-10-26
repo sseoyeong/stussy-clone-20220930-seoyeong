@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class RestControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
-    public ResponseEntity<?> validationException(CustomValidationException e) {
+    public ResponseEntity<?> validationErrorException(CustomValidationException e) {
 
         return ResponseEntity.badRequest().body(new CMRespDto<>(e.getMessage(), e.getErrorMap()));
     }
@@ -23,4 +23,5 @@ public class RestControllerExceptionHandler {
 
         return ResponseEntity.internalServerError().body(new CMRespDto<>(e.getMessage(), null));
     }
+
 }

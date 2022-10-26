@@ -24,4 +24,5 @@ public class CollectionsProduct {
                 .productTotalCount(product_total_count)
                 .build();
     }
+
 }

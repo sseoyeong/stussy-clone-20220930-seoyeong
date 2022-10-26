@@ -1,6 +1,6 @@
 package com.stussy.stussyclone20220930seoyeong.domain;
 
-import com.stussy.stussyclone20220930seoyeong.api.admin.CategoryResponseDto;
+import com.stussy.stussyclone20220930seoyeong.dto.admin.CategoryResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

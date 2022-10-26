@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/admin.css">
     <link rel="stylesheet" href="/static/css/aside.css">
+    <link rel="stylesheet" href="/static/css/register.css">
 </head>
 <body>
     <div id="container">
@@ -61,23 +62,84 @@
                     <aside class="admin-menus">
                         <ul>
                             <li><a href="/admin/products">상품 조회</a></li>
-                            <li><a href="/admin/products/addition">상품 등록</a></li>
+                            <li><a href="/admin/product/addition">상품 등록</a></li>
                             <li><a href="/admin/systems">시스템 정보</a></li>
                             <li><a href="/logout">로그아웃</a></li>
                         </ul>
                     </aside>
                     <section class="admin-main">
-                        <label class="product-select">상품선택</label>
-                        <select class="product-select" id="product-select">
+                        <label for="product-select">상품선택</label>
+                        <select id="product-select" class="product-select">
                         </select>
-                        <label class="product-size">사이즈</label>
-                        <select class="product-size" id="product-size">
+                        <br>
+                        <br>
+                        <label for="product-size">사이즈</label>
+                        <select id="product-size" class="product-size">
                         </select>
-                        <label class="product-color">색상</label>
-                        <input class="product-color" id="product-color">
-                        <label class="product-color">수량</label>
-                        <input class="product-stock" id="number">
-                        <button></button>
+                        <br>
+                        <br>
+                        <label for="product-color">색상</label>
+                        <input type="text" id="product-color" class="product-color">
+                        <br>
+                        <br>
+                        <label for="product-color">수량</label>
+                        <input type="text" id="product-stock" class="product-stock">
+                        <br>
+                        <br>
+                        <button class="btn regist-button">추가</button>
+                        <br>
+                        <br>
+                        <br>
+                            <hr>
+                        <br>
+                        <br>
+                        <br>
+                        <input type="file" class="product-img" name="files" multiple>
+                        <button class="btn regist-button">사진등록</button>
+                        <ul class="file-list">
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                            <li class="file-info">
+                                <div class="file-img">
+                                    <img src="/static/images/header/product1.png" alt="">
+                                </div>
+                                <div class="file-name">파일명.png</div>
+                                <button type="button" class="btn delete-button">삭제</button>
+                            </li>
+                        </ul>
                     </section>
                 </div>
             </div>

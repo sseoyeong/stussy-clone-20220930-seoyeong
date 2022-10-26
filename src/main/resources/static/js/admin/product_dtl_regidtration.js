@@ -4,13 +4,12 @@ class CommonApi {
         if(this.#instance == null) {
             this.#instance = new CommonApi();
         }
-
         return this.#instance;
     }
-
+    
     getProductMstList() {
         let responseData = null;
-        $.ajax ({
+        $.ajax({
             async: false,
             type: "get",
             url: "/api/admin/option/products/mst",
@@ -22,13 +21,12 @@ class CommonApi {
                 console.log(error);
             }
         });
-
         return responseData;
     }
 
-    getProductSize(productId) {
+    getProductSizeList(productId) {
         let responseData = null;
-        $.ajax ({
+        $.ajax({
             async: false,
             type: "get",
             url: "/api/admin/option/products/size/" + productId,
@@ -40,27 +38,40 @@ class CommonApi {
                 console.log(error);
             }
         });
-
         return responseData;
+    }
+}
+
+class ProductApi {
+    static #instance = null;
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new ProductApi();
+        }
+        return this.#instance;
     }
 
     registProductDtl(productDtlParams) {
         $.ajax({
             async: false,
             type: "post",
-            url: "/api/admin/option/product/dtl",
-            contentType: "application/jason",
+            url: "/api/admin/product/dtl",
+            contentType: "application/json",
             data: JSON.stringify(productDtlParams),
             dataType: "json",
             success: (response) => {
-                alert("추가 완료");
+                alert("추가 완료!");
                 location.reload();
             },
             error: (error) => {
                 console.log(error);
+                alert(`상품 추가 실패.
+${error.responseJSON.data.error}
+                `)
             }
         })
     }
+
 }
 
 class Option {
@@ -69,50 +80,55 @@ class Option {
         if(this.#instance == null) {
             this.#instance = new Option();
         }
-
         return this.#instance;
     }
 
     setProductMstSelectOptions() {
         const pdtMstSelect = document.querySelector(".product-select");
         CommonApi.getInstance().getProductMstList().forEach(product => {
+            console.log(product)
             pdtMstSelect.innerHTML += `
-                <option value="${product.id}">(${product.category})${product.name}</option>
+                <option value="${product.pdtId}">(${product.category})${product.pdtName}</option>
             `;
         });
 
+        this.addMstSelectEvent();
     }
 
     addMstSelectEvent() {
         const pdtMstSelect = document.querySelector(".product-select");
         pdtMstSelect.onchange = () => {
-            this.setSizeSelectOptions();
+            this.setSizeSelectOptions(pdtMstSelect.value);
         }
     }
 
-    setSizeSelectOptions() {
+    setSizeSelectOptions(productId) {
         const pdtSizeSelect = document.querySelector(".product-size");
         pdtSizeSelect.innerHTML = "";
         CommonApi.getInstance().getProductSizeList(productId).forEach(size => {
             pdtSizeSelect.innerHTML += `
-            <option value="${size.size_id}">${size.sizeName}</option>
+                <option value="${size.sizeId}">${size.sizeName}</option>
             `;
         })
     }
 
     addSubmitEvent() {
         const registButton = document.querySelector(".regist-button");
-        registButton.onclink = () => {
+        registButton.onclick = () => {
             const productDtlParams = {
                 "pdtId": document.querySelector(".product-select").value,
                 "pdtSize": document.querySelector(".product-size").value,
                 "pdtColor": document.querySelector(".product-color").value,
-                "pdtStock": document.querySelector("product-stock").value
+                "pdtStock": document.querySelector(".product-stock").value
             }
+            ProductApi.getInstance().registProductDtl(productDtlParams);
         }
     }
 }
 
+
+
 window.onload = () => {
     Option.getInstance().setProductMstSelectOptions();
+    Option.getInstance().addSubmitEvent();
 }

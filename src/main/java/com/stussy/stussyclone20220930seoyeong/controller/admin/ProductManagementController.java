@@ -17,5 +17,4 @@ public class ProductManagementController {
     public String laodProductDtlRegister() {
         return "admin/product_dtl_registration";
     }
-
 }

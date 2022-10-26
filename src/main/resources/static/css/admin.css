@@ -39,7 +39,7 @@
     animation: visible 0.2s linear alternate;
 }
 
-.input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"] { 
     height: 36px;
 }
 
@@ -60,28 +60,35 @@ textarea {
 .regist-button {
     width: 100%;
     height: 40px;
-    color:white;
+    color: white;
     background-color: black;
 }
 
 .product-mst {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
 
     width: 100%;
 }
 
 .list-container {
-    margin-top: 10px;
+    margin-top: 30px;
     width: 70%;
-    height: 715%;
-
+    height: 715px;
+    
     overflow-y: auto;
+}
+
+.option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 5px;
 }
 
 .page-number-list {
     display: flex;
-    margin-bottom: 5px;
 }
 
 .page-number-list li {
@@ -116,29 +123,22 @@ textarea {
     width: 100%;
 }
 
-.product-mst-list tbody {
-    max-height: 100%;
-}
-
 .product-mst-list td {
     width: 8%;
     padding: 0px 5px;
 }
 
-.product-mst-list td:nth-child(1) {
+.product-mst-list td:nth-child(1){
     width: 10%;
 }
-
-.product-mst-list td:nth-child(2) {
+.product-mst-list td:nth-child(2){
     width: 10%;
 }
-
-.product-mst-list td:nth-child(3) {
+.product-mst-list td:nth-child(3){
     width: 36%;
     text-align: left;
 }
-
-.product-mst-list td:nth-child(4) {
+.product-mst-list td:nth-child(4){
     width: 12%;
     text-align: right;
 }
@@ -152,9 +152,9 @@ textarea {
 }
 
 .function-container {
-    height: 300px;
+    margin-top: 30px;
     border: 1px solid rgb(198, 198, 198);
-    height: 220px; 
+    height: 220px;
 }
 
 .show-option label {
