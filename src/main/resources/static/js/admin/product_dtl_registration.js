@@ -72,6 +72,27 @@ class ProductApi {
         })
     }
 
+    registImgFiles(formData) {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/api/admin/product/img",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: "json",
+            success: (response) => {
+                alert("이미지 등록 완료");
+                location.reload();
+            },
+            error: (error) => {
+                console.log(error);
+            }
+
+        });
+    }
+
 }
 
 class Option {
@@ -148,6 +169,23 @@ class ProductImgFile {
 
     constructor() {
         this.addFileInputEvent();
+        this.addUploadEvent();
+    }
+
+    addUploadEvent() {
+        const uploadButton = document.querySelector(".upload-button");
+        uploadButton.onclick = () => {
+            const formData = new FormData();
+
+            const productId = document.querySelector(".product-select").value;
+            formData.append("pdtId", productId);
+
+            this.newImgList.forEach(imgFile => {
+                formData.append("files", imgFile);
+            });
+
+            ProductApi.getInstance().registImgFiles(formData);
+        }
     }
 
     addFileInputEvent() {

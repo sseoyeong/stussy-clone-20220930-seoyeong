@@ -3,6 +3,7 @@ package com.stussy.stussyclone20220930seoyeong.api.admin;
 import com.stussy.stussyclone20220930seoyeong.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220930seoyeong.aop.annotation.ValidAspect;
 import com.stussy.stussyclone20220930seoyeong.dto.CMRespDto;
+import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductImgReqDto;
 import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductRegisterDtlReqDto;
 import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductRegisterReqDto;
 import com.stussy.stussyclone20220930seoyeong.service.admin.ProductManagementService;
@@ -73,4 +74,11 @@ public class ProductAdminApi {
                 .body(new CMRespDto<>("Register Successfully", true));
     }
 
+    @LogAspect
+    @PostMapping("/product/img")
+    public ResponseEntity<?> registerImg(ProductImgReqDto productImgReqDto) throws Exception {
+
+        return ResponseEntity.created(null)
+                .body(new CMRespDto<>("Register Successfully", true));
+    }
 }
