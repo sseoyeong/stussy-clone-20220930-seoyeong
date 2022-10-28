@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220930seoyeong.service;
 
+import com.stussy.stussyclone20220930seoyeong.domain.Product;
 import com.stussy.stussyclone20220930seoyeong.dto.CollectionListRespDto;
 import com.stussy.stussyclone20220930seoyeong.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +32,8 @@ public class ProductServiceImpl implements ProductService {
         return productList;
     }
 
+    @Override
+    public Product getProduct(int pdtId) throws Exception {
+        return null;
+    }
 }

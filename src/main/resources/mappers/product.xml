@@ -5,6 +5,30 @@
 
 <mapper namespace="com.stussy.stussyclone20220930seoyeong.repository.ProductRepository">
 
+    <resultMap id="getProductDtl" type="com.stussy.stussyclone20220930seoyeong.repository.ProductRepository">
+        <result property="id" column="pdt_dtl_id"></result>
+        <result property="pdt_color" column="pdt_dtl_id"></result>
+        <result property="size_id" column="pdt_dtl_id"></result>
+        <result property="size_name" column="pdt_dtl_id"></result>
+        <result property="pst_stock" column="pdt_dtl_id"></result>
+    </resultMap>
+
+    <resultMap id="getProductImg" type="com.stussy.stussyclone20220930seoyeong.domain.ProductImg">
+        <result property="save_name" column="save_name"></result>
+    </resultMap>
+
+    <resultMap id="getProductMst" type="com.stussy.stussyclone20220930seoyeong.domain.Product">
+        <result property="id" column="id"></result>
+        <result property="pdt_name" column="pdt_name"></result>
+        <result property="pdt_price" column="pdt_price"></result>
+        <result property="pdt_simple_info" column="pdt_simple_info"></result>
+        <result property="pdt_detail_info" column="pdt_detail_info"></result>
+        <result property="pdt_option_info" column="pdt_option_info"></result>
+        <result property="pdt_management_info" column="pdt_management_info"></result>
+        <result property="pdt_shipping_info" column="pdt_shipping_info"></result>
+        <collection property="pdt_dtls" javaType="list" resultMap="getProductDtl"></collection>
+        <collection property="pdt_imgs" javaType="list" resultMap="getProductImg"></collection>
+    </resultMap>
     <select id="getProductList" parameterType="hashmap" resultType="com.stussy.stussyclone20220930seoyeong.domain.CollectionsProduct">
         select
         pm.id,
@@ -29,6 +53,9 @@
         group by
         pm.id
         limit #{index}, 16
+
+    </select>
+    <select id="getProduct" resultType="com.stussy.stussyclone20220930seoyeong.domain.Product">
 
     </select>
 

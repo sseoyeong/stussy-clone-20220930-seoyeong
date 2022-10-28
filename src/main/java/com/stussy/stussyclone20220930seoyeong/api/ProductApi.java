@@ -23,4 +23,9 @@ public class ProductApi {
         return ResponseEntity.ok(new CMRespDto<>("Successfully", productService.getProductList(category, page)));
     }
 
+    @GetMapping("/product/{pdtId}")
+    public ResponseEntity<?> getProduct(@PathVariable String pdtId) {
+        return null;
+    }
+
 }
