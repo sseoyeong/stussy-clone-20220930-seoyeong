@@ -12,12 +12,12 @@ public class ProductRespDto {
 
     private int pdtId;
     private String pdtName;
-    private String pdtPrice;
+    private int pdtPrice;
     private String pdtSimpleInfo;
     private String pdtDetailInfo;
     private String pdtOptionInfo;
     private String pdtManagementInfo;
-    private String shippingInfo;
-    private Map<String, List<Map<String, String>>> pdtColors;
+    private String pdtShippingInfo;
+    private Map<String, List<Map<String, Object>>> pdtColors;
     private List<String> pdtImgs;
 }

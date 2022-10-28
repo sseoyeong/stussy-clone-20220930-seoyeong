@@ -5,12 +5,12 @@
 
 <mapper namespace="com.stussy.stussyclone20220930seoyeong.repository.ProductRepository">
 
-    <resultMap id="getProductDtl" type="com.stussy.stussyclone20220930seoyeong.repository.ProductRepository">
+    <resultMap id="getProductDtl" type="com.stussy.stussyclone20220930seoyeong.domain.ProductDetail">
         <result property="id" column="pdt_dtl_id"></result>
-        <result property="pdt_color" column="pdt_dtl_id"></result>
-        <result property="size_id" column="pdt_dtl_id"></result>
-        <result property="size_name" column="pdt_dtl_id"></result>
-        <result property="pst_stock" column="pdt_dtl_id"></result>
+        <result property="pdt_color" column="pdt_color"></result>
+        <result property="size_id" column="size_id"></result>
+        <result property="size_name" column="size_name"></result>
+        <result property="pdt_stock" column="pdt_stock"></result>
     </resultMap>
 
     <resultMap id="getProductImg" type="com.stussy.stussyclone20220930seoyeong.domain.ProductImg">
@@ -31,32 +31,53 @@
     </resultMap>
     <select id="getProductList" parameterType="hashmap" resultType="com.stussy.stussyclone20220930seoyeong.domain.CollectionsProduct">
         select
-        pm.id,
-        pm.pdt_name,
-        pm.pdt_price,
-        pim.save_name,
-        pm_cnt.product_total_count
+            pm.id,
+            pm.pdt_name,
+            pm.pdt_price,
+            pim.save_name,
+            pm_cnt.product_total_count
         from
-        pdt_mst pm
-        left outer join pdt_image_mst pim on(pim.pdt_id = pm.id)
-        left outer join (   select count(*) product_total_count
-        from pdt_mst
-        where 1 = 1
-        <if test='category != "all"'>
-            and category_id = (select id from pdt_category_mst where category_name = #{category})
-        </if> ) pm_cnt on(1 = 1)
+            pdt_mst pm
+            left outer join pdt_image_mst pim on(pim.pdt_id = pm.id)
+            left outer join (   select count(*) product_total_count
+                                from pdt_mst
+                                where 1 = 1
+                                <if test='category != "all"'>
+                                    and category_id = (select id from pdt_category_mst where category_name = #{category})
+                                </if> ) pm_cnt on(1 = 1)
         where
-        1 = 1
-        <if test='category != "all"'>
-            and pm.category_id = (select id from pdt_category_mst where category_name = #{category})
-        </if>
+            1 = 1
+            <if test='category != "all"'>
+                and pm.category_id = (select id from pdt_category_mst where category_name = #{category})
+            </if>
         group by
-        pm.id
+            pm.id
         limit #{index}, 16
 
     </select>
     <select id="getProduct" resultType="com.stussy.stussyclone20220930seoyeong.domain.Product">
-
+        SELECT
+            pm.id AS pdt_id,
+            pm.pdt_namem
+            pm.pdt_price,
+            pm.pdt_simple_info,
+            pm.pdt_detail_info,
+            pm.pdt_option_info,
+            pm.pdt_management_info,
+            pm.pdt_shipping_info,
+            pd.id AS pdt_dtl_id,
+            pd.size_id,
+            psm.size_name,
+            pd.pdt_color,
+            pim.save_name
+        FROM
+            pdt_mst pm
+            LEFT OUTER JOIN pdt_dtl pd ON(pd.pdt_id = pm.id)
+            LEFT OUTER JOIN pdt_size_dtl psd ON(psd.id = pd.size_id)
+            LEFT OUTER JOIN pdt_size_mst psm ON(psm.id = psm.size_id)
+            LEFT OUTER JOIN pdt_image_mst pim ON(pim.pdt_id = pm.id)
+        WHERE
+            pm.id = #{pdtId}
     </select>
 
 </mapper>
