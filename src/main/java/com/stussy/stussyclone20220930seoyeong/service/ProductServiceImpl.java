@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductRespDto getProduct(int pdtId) throws Exception {
-        Product product = productRepository.getProduct(pdtId);
+        Product product = (Product) productRepository.getProduct(pdtId);
 
         if(product == null) {
             Map<String, String> errorMap = new HashMap<String, String>();
