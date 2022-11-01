@@ -1,5 +1,4 @@
 class ProductApi {
-
     static #instance = null;
     static getInstance() {
         if(this.#instance == null) {
@@ -12,29 +11,33 @@ class ProductApi {
         let responseData = null;
         const url = location.href;
         const pdtId = url.substring(url.lastIndexOf("/") + 1);
-    
-        $.ajax ({
+
+        $.ajax({
             async: false,
             type: "get",
             url: "/api/product/" + pdtId,
-            dataType: response => {
+            dataType: "json",
+            success: response => {
                 responseData = response.data;
             },
             error: error => {
                 console.log(error);
             }
         });
-    
-        return responseData;
-    }
 
+        return responseData;
+
+    }
 }
 
 class ProductDetail {
 
     constructor() {
         const responseData = ProductApi.getInstance().getProductData();
+        this.loadProductImgs(responseData);
         this.loadProductDetail(responseData);
+        this.loadProductColors(responseData);
+        this.loadProductSizes(responseData);
     }
 
     loadProductImgs(responseData) {
@@ -50,18 +53,19 @@ class ProductDetail {
         });
     }
 
-    loadProductDetail() {
+    loadProductDetail(responseData) {
         document.querySelector(".product-title").textContent = responseData.pdtName;
-        document.querySelector(".product-price").textContent = "//" + responseData.pdtPrice;
+        document.querySelector(".product-price").textContent = "\\" + responseData.pdtPrice;
         document.querySelector(".simple-info").innerHTML = responseData.pdtSimpleInfo;
         document.querySelector(".detail-info").innerHTML = `<strong>PRODUCT DETAILS</strong>
 ${responseData.pdtDetailInfo}`;
         document.querySelector(".option-info").innerHTML = responseData.pdtOptionInfo;
         document.querySelector(".management-info").innerHTML = responseData.pdtManagementInfo;
         document.querySelector(".shipping-info").innerHTML = responseData.pdtShippingInfo;
+        
     }
 
-    loadProductColors() {
+    loadProductColors(responseData) {
         const productColors = document.querySelector(".product-colors");
         productColors.innerHTML = ``;
 
@@ -69,30 +73,35 @@ ${responseData.pdtDetailInfo}`;
             productColors.innerHTML += `<option value="${color}">${color}</option>`;
         });
     }
-    
+
     loadProductSizes(responseData) {
+        const productColors = document.querySelector(".product-colors");
         const productSizes = document.querySelector(".product-sizes");
+        productSizes.innerHTML = "";
         Object.entries(responseData.pdtColors).forEach(entry => {
             if(productColors.value == entry[0]) {
-                entry[1].forEach(vlaue => {
+                entry[1].forEach(value => {
                     productSizes.innerHTML += `
-                    <input type="hidden" id="pdtDtlId" value="${value.pdtDtlId};>
-                    <input type="radio" id="product-size-SS" class="product-size" name="pdtSize">
-                    <label for="product-size-SS">SS</label>
-                `;
+                        <input type="radio" id="product-size-${value.sizeName}" class="product-size" name="pdtDtlId" value="${value.pdtDtlId}" ${value.pdtStock == 0 ? 'disabled' : ''} required>
+                        <label for="product-size-${value.sizeName}" ${value.pdtStock == 0 ? 'class="no-stock"' : ''}>${value.sizeName}</label>
+                    `;
+                })
+                
             }
         });
+
+        this.addColorsSelectEvent(responseData);
     }
 
     addColorsSelectEvent(responseData) {
         const productColors = document.querySelector(".product-colors");
         productColors.onchange = () => {
-
+            this.loadProductSizes(responseData);
         }
     }
+
 }
 
 window.onload = () => {
     new ProductDetail();
 }
-

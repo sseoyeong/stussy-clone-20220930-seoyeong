@@ -16,4 +16,12 @@ public class ProductController {
     public String loadProductDetail(@PathVariable String pdtId) {
         return "product/product_detail";
     }
+
+    @GetMapping("/checkout")
+    public String loadPayment(@PathVariable int pdtDtlId) throws Exception {
+        System.out.println(pdtDtlId);
+        return "product/product_order";
+    }
+
+
 }
