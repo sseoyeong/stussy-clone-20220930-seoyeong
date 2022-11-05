@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Random;
-
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
@@ -78,7 +77,10 @@ public class ProductAdminApi {
     @PostMapping("/product/img")
     public ResponseEntity<?> registerImg(ProductImgReqDto productImgReqDto) throws Exception {
 
+        productManagementService.registerImg(productImgReqDto);
+
         return ResponseEntity.created(null)
                 .body(new CMRespDto<>("Register Successfully", true));
     }
+
 }
