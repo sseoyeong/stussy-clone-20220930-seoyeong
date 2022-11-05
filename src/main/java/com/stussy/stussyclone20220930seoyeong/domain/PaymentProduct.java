@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220930seoyeong.domain;
 
+import com.stussy.stussyclone20220930seoyeong.dto.CheckoutRespDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,17 @@ public class PaymentProduct {
     private int size_id;
     private String size_name;
     private String save_name;
+
+    public CheckoutRespDto toDto() {
+        return CheckoutRespDto.builder()
+                .pdtDtlId(pdt_dtl_id)
+                .pdtId(pdt_id)
+                .pdtName(pdt_name)
+                .pdtPrice(pdt_price)
+                .pdtColor(pdt_color)
+                .sizeId(size_id)
+                .sizeName(size_name)
+                .saveName(save_name)
+                .build();
+    }
 }

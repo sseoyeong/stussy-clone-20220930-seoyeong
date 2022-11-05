@@ -3,7 +3,7 @@ package com.stussy.stussyclone20220930seoyeong.service;
 import com.stussy.stussyclone20220930seoyeong.domain.Product;
 import com.stussy.stussyclone20220930seoyeong.dto.CheckoutRespDto;
 import com.stussy.stussyclone20220930seoyeong.dto.CollectionListRespDto;
-import com.stussy.stussyclone20220930seoyeong.dto.admin.ProductRespDto;
+import com.stussy.stussyclone20220930seoyeong.dto.ProductRespDto;
 import com.stussy.stussyclone20220930seoyeong.exception.CustomValidationException;
 import com.stussy.stussyclone20220930seoyeong.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
